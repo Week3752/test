@@ -34,6 +34,7 @@
 					<div class="form-group">
 						<label>Writer</label>
 						<input class="form-control" readonly="readonly" name="writer" value='<c:out value="${dto.writer }"/>'>
+					<h1>gdgd</h1>
 					</div>
 				</div>
 				<!-- /.panel-body -->
