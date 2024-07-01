@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- BoardMapper 인터페이스를 구현한다는 의미 -->
+  <mapper namespace="org.spring.persistence.BoardMapper">
+  
+  	<!-- 각 태그의 id는 인터페이스의 메서드 명과 일치해야한다 -->
+  	<insert id="insert" parameterType="org.spring.domain.BoardDTO">
+  		INSERT INTO board(title, content, writer) VALUES(#{title},#{content},#{writer})
+  	</insert>
+  	
+  	<!-- insertSelectBno 추가 
+  		keyColumn : 자동으로 생성된 테이블의 컬럼명(필요한 컬럼명 기입)
+  		keyProperty : 자동으로 생성된 키 값을 저장할 BoardDTO 객체의 필드명(자동으로 setBno)
+  		useGeneratedKeys="true" : DB가 생성한 키 값을 MyBatis가 자동으로 가지고 오는 것을 허용
+  	-->
+  	<insert id="insertSelectBno" parameterType="org.spring.domain.BoardDTO"
+  	keyColumn="bno" keyProperty="bno" useGeneratedKeys="true">
+  		INSERT INTO board(title, content, writer) VALUES(#{title},#{content},#{writer})
+  	</insert>
+  	
+  	<select id="select" resultType="org.spring.domain.BoardDTO">
+  		SELECT * FROM board WHERE bno = #{bno}
+  	</select>
+  	
+  	<update id="update" parameterType="org.spring.domain.BoardDTO">
+  		UPDATE board SET title = #{title}, content = #{content} WHERE bno = #{bno}
+  	</update>
+  </mapper>
